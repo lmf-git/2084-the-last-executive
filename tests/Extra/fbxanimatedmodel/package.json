@@ -1,0 +1,22 @@
+{
+  "name": "svelte-threejs-gltf-loader",
+  "version": "1.0.0",
+  "description": "Svelte 5 runes mode Three.js GLTF/GLB loader with animations",
+  "type": "module",
+  "scripts": {
+    "dev": "vite dev --host",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "@sveltejs/adapter-auto": "^3.0.0",
+    "@sveltejs/kit": "^2.0.0",
+    "@sveltejs/vite-plugin-svelte": "^4.0.0-next.6",
+    "svelte": "^5.0.0",
+    "vite": "^5.0.0"
+  },
+  "dependencies": {
+    "@dimforge/rapier3d-compat": "^0.18.1",
+    "three": "^0.160.0"
+  }
+}

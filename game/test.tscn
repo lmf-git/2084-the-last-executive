@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://bx7nxfphdlvqs"]
+
+[ext_resource type="Script" uid="uid://mfa50wcbdl6g" path="res://CarController.gd" id="1_37kl0"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_8uh7m"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_6uqi0"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_37kl0"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="Node" type="Node" parent="."]
+
+[node name="RigidBody3D" type="RigidBody3D" parent="."]
+script = ExtResource("1_37kl0")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="RigidBody3D"]
+mesh = SubResource("BoxMesh_8uh7m")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
+shape = SubResource("BoxShape3D_6uqi0")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+texture = SubResource("NoiseTexture2D_37kl0")
+offset = Vector2(0, 8.91)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
