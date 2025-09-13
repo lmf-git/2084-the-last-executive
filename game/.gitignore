@@ -1,9 +1,0 @@
-# Godot 4+ specific ignores
-.godot/
-/android/
-
-.nuxt/
-
-.DS_Store
-
-.svelte-kit/
