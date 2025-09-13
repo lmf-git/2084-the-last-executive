@@ -55,6 +55,8 @@ func _input(event):
 			handle_jump_input()
 		elif event.keycode == KEY_V:
 			cycle_animations()
+		elif event.keycode == KEY_T:
+			toggle_ik()
 
 func _physics_process(delta):
 	# Add gravity
@@ -148,6 +150,11 @@ func cycle_animations():
 			var next_anim = animations[next_index]
 			character_rig.play_animation(next_anim)
 			print("Playing animation: ", next_anim)
+
+func toggle_ik():
+	"""Toggle IK system"""
+	if character_rig:
+		character_rig.toggle_ik()
 
 func _unhandled_input(_event):
 	if Input.is_action_just_pressed("ui_cancel"):
