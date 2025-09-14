@@ -1,26 +1,28 @@
-[gd_scene load_steps=11 format=3 uid="uid://f5t86tsr0k8h"]
+[gd_scene load_steps=10 format=3 uid="uid://denqx0r8n6cu0"]
 
-[ext_resource type="Script" uid="uid://cole5leidq0ip" path="res://FPSController.gd" id="1_0cnb0"]
-[ext_resource type="Script" uid="uid://clqynr6qqkmr" path="res://FPSHands.gd" id="2_hands"]
-[ext_resource type="Script" uid="uid://sefnivqhuguc" path="res://CharacterRig.gd" id="3_rig"]
+[ext_resource type="Script" uid="uid://dl2tjrochlph0" path="res://scripts/player/fps_controller.gd" id="1_r0du0"]
+[ext_resource type="Script" uid="uid://d2otwi4286vwt" path="res://scripts/player/fps_hands.gd" id="2_cm0pq"]
+[ext_resource type="Script" uid="uid://be5kvec75jst" path="res://scripts/character/character_rig.gd" id="3_fos0i"]
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_1tvnv"]
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_player"]
+radius = 0.4
+height = 1.8
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_player"]
+radius = 0.4
+height = 1.8
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_player"]
-albedo_color = Color(0.2, 0.6, 0.8, 1)
+transparency = 1
+albedo_color = Color(0.2, 0.6, 0.8, 0.3)
 
 [sub_resource type="BoxMesh" id="BoxMesh_ground"]
-size = Vector3(10, 1, 10)
+size = Vector3(20, 1, 20)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ground"]
-size = Vector3(10, 1, 10)
+size = Vector3(20, 1, 20)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wall"]
-albedo_color = Color(0.8, 0.6, 0.4, 1)
-
-[sub_resource type="Environment" id="Environment_1bgl2"]
+[sub_resource type="Environment" id="Environment_main"]
 background_mode = 1
 background_color = Color(0.2, 0.4, 0.8, 1)
 ambient_light_source = 2
@@ -31,27 +33,27 @@ ambient_light_energy = 0.3
 
 [node name="Player" type="CharacterBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-script = ExtResource("1_0cnb0")
+script = ExtResource("1_r0du0")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Player"]
-shape = SubResource("CapsuleShape3D_1tvnv")
+shape = SubResource("CapsuleShape3D_player")
 
 [node name="PlayerMesh" type="MeshInstance3D" parent="Player"]
 visible = false
 mesh = SubResource("CapsuleMesh_player")
 surface_material_override/0 = SubResource("StandardMaterial3D_player")
 
-[node name="Camera3D" type="Camera3D" parent="Player"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)
+[node name="FirstPersonCamera" type="Camera3D" parent="Player"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 0)
 
-[node name="FPSHands" type="Node3D" parent="Player/Camera3D"]
-script = ExtResource("2_hands")
+[node name="FPSHands" type="Node3D" parent="Player/FirstPersonCamera"]
+script = ExtResource("2_cm0pq")
 
 [node name="ThirdPersonCamera" type="Camera3D" parent="Player"]
 transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 2, 3)
 
 [node name="CharacterRig" type="Node3D" parent="Player"]
-script = ExtResource("3_rig")
+script = ExtResource("3_fos0i")
 
 [node name="Environment" type="Node3D" parent="."]
 
@@ -65,30 +67,12 @@ mesh = SubResource("BoxMesh_ground")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 shape = SubResource("BoxShape3D_ground")
 
-[node name="Wall1" type="StaticBody3D" parent="Environment"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 2, 0)
+[node name="Lighting" type="Node3D" parent="."]
 
-[node name="WallMesh1" type="MeshInstance3D" parent="Environment/Wall1"]
-mesh = SubResource("BoxMesh_ground")
-surface_material_override/0 = SubResource("StandardMaterial3D_wall")
-
-[node name="WallCollision1" type="CollisionShape3D" parent="Environment/Wall1"]
-shape = SubResource("BoxShape3D_ground")
-
-[node name="Wall2" type="StaticBody3D" parent="Environment"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 2, 0)
-
-[node name="WallMesh2" type="MeshInstance3D" parent="Environment/Wall2"]
-mesh = SubResource("BoxMesh_ground")
-surface_material_override/0 = SubResource("StandardMaterial3D_wall")
-
-[node name="WallCollision2" type="CollisionShape3D" parent="Environment/Wall2"]
-shape = SubResource("BoxShape3D_ground")
-
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Lighting"]
 transform = Transform3D(0.707107, -0.5, 0.5, 0, 0.707107, 0.707107, -0.707107, -0.5, 0.5, 0, 5, 0)
 light_energy = 0.8
 shadow_enabled = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_1bgl2")
+environment = SubResource("Environment_main")

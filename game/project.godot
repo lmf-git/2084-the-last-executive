@@ -11,9 +11,13 @@ config_version=5
 [application]
 
 config/name="2084: The Last Executive"
-run/main_scene="res://Main.tscn"
+run/main_scene="uid://denqx0r8n6cu0"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
+
+[autoload]
+
+ProjectConfig="*res://project_config.gd"
 
 [input]
 
