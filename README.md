@@ -40,7 +40,6 @@ Inspired by Battlestar Galactica and Call of Duty 4, the game combines grounded 
 - **Destructible structures and player/vehicle parts**
 - **Vehicle interiors via static proxies and kinematic player**
 - **Boats/buoyancy/player swimming**
-- **Point gravity with dynamic rigid body player**
 - **Flying simulation**
 - **Driving simulation**
 - **Player falling, ground orientation/projected movement**
@@ -58,7 +57,7 @@ Inspired by Battlestar Galactica and Call of Duty 4, the game combines grounded 
 - Realistic damage modeling for structures and vehicles
 
 #### Advanced Locomotion
-- Seamless blend of player animations (IK) with dynamic physics (ragdoll)
+- Seamless blend of player animations with dynamic physics (ragdoll)
 - Realistic movement and reaction to impacts
 - Ground orientation and projected movement along surface normals
 
@@ -67,16 +66,10 @@ Inspired by Battlestar Galactica and Call of Duty 4, the game combines grounded 
 - Responsive swimming controls for underwater navigation
 - Dynamic water interaction with destructible elements
 
-#### Point Gravity System
-- Localized gravity emitters in specific levels
-- Dynamic rigid body player with locked rotation
-- Automatic ground detection via raycasting
-- Smooth transitions between gravity orientations
 
 ### Audio Design
 - High-quality positional audio critical for situational awareness
 - Distinct sound profiles for weapons, environments, and physics effects
-- Environmental audio cues for gravity shifts and mechanical events
 - Realistic audio propagation in different environments
 
 ### Visual Design
@@ -112,7 +105,7 @@ Their paths converge in the final level as they unite to take down The Executive
 - **Narrative Purpose:** Escalation, Vex's growing skepticism
 
 ### Level 5: "The Foundry" (Sharma)
-- **Core Features:** Point gravity, ground orientation, IK/ragdoll systems
+- **Core Features:** Ground orientation, ragdoll systems
 - **Narrative Purpose:** Technology revelation, Sharma's turning point
 
 ### Level 6: "The Bunker" (Both)
@@ -132,13 +125,7 @@ Their paths converge in the final level as they unite to take down The Executive
    - Kinematic player state management
    - Realistic vehicle physics for boats, aircraft, and ground vehicles
 
-3. **Gravity Manipulation System**
-   - Point gravity field calculations
-   - Player orientation management
-   - Physics object behavior in altered gravity
-
-4. **Animation System**
-   - IK solver for adaptive character positioning
+3. **Animation System**
    - Ragdoll physics integration
    - Smooth blending between animation states
 
