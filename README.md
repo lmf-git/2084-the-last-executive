@@ -11,29 +11,29 @@ Inspired by Battlestar Galactica and Call of Duty 4, the game combines grounded 
 
 ## Level Structure
 
-### Level 1: "The Sinking Penitent" (Vex)
+### Level 1: "The Sinking Penitent" (Vex) — Equilibrium
 - **Core Features:** Swimming, boats/buoyancy, destructible structures, environmental audio
-- **Narrative Purpose:** Character introduction, world establishment through overheard radio broadcasts, news reports, and guard behavior; faction ideology exposition
+- **Narrative Function:** Establishes the war's "normal state" through Vex's imprisonment; world-building via radio broadcasts, news reports, and guard behavior reveals accepted faction ideology and the established conflict
 
-### Level 2: "The Harvest" (Vex)
+### Level 2: "The Harvest" (Vex) — Disruption
 - **Core Features:** Advanced audio/visual effects, destructible cover, crowd audio and behavior
-- **Narrative Purpose:** Moral complexity introduction through civilian riot suppression; destructible cover reveals desperate civilians; Vex's disillusionment begins
+- **Narrative Function:** Disrupts Vex's acceptance of the war through brutal civilian riot suppression; destructible cover reveals desperate humanity beneath enemy labels; the moral foundation cracks
 
-### Level 3: "Harbor Gauntlet" (Sharma)
+### Level 3: "Harbor Gauntlet" (Sharma) — Equilibrium (Counter-perspective)
 - **Core Features:** Vehicle interiors, driving simulation, destructible vehicle parts, seamless transitions
-- **Narrative Purpose:** Sharma introduction; experience war from vehicle interior perspective with destructible parts affecting functionality; tactical contrast to Vex's missions
+- **Narrative Function:** Introduces Sharma's equilibrium—her belief in the RNC's righteous cause; vehicle combat from interior perspective establishes her professional competence and tactical certainty
 
-### Level 4: "The Airship Graveyard" (Vex)
+### Level 4: "The Airship Graveyard" (Vex) — Recognition
 - **Core Features:** Flying simulation, destructible vehicle parts, dynamic physics
-- **Narrative Purpose:** Escalation through aerial combat; damaged aircraft parts affect flight control; Vex's growing skepticism
+- **Narrative Function:** Vex begins recognizing the war's true nature; aerial perspective provides literal and metaphorical distance; damaged systems mirror his fragmenting worldview
 
-### Level 5: "The Foundry" (Sharma)
+### Level 5: "The Foundry" (Sharma) — Recognition/Disruption
 - **Core Features:** Advanced locomotion, ragdoll systems, environmental physics
-- **Narrative Purpose:** Technology revelation through industrial hazards; ragdoll physics during accidents; Sharma's turning point
+- **Narrative Function:** Sharma's disruption and recognition converge; industrial setting reveals Executive's manipulation; physical vulnerability through ragdoll physics mirrors ideological collapse
 
-### Level 6: "The Bunker" (Both)
+### Level 6: "The Bunker" (Both) — Resolution → New Equilibrium
 - **Core Features:** All systems integration, swimming, vehicles, destruction, final confrontation mechanics
-- **Narrative Purpose:** Character convergence; all gameplay systems unite in climactic multi-phase encounter; resolution of conspiracy
+- **Narrative Function:** Former enemies resolve the conspiracy together; defeat of The Executive dissolves false conflict; new equilibrium emerges from shared understanding and unity against manipulation
 
 ## Core Gameplay Features
 
