@@ -11,53 +11,6 @@ Players alternate between two protagonists - Vex (FAS) and Sergeant Anya Sharma 
 
 Inspired by Battlestar Galactica and Call of Duty 4, the game combines grounded military realism with selective sci-fi elements, emphasizing environmental storytelling and the human cost of manipulation and conflict.
 
-
-## Core Gameplay Features
-
-### Narrative Progression
-- Linear, 6-level campaign with emotional and thematic arc
-- Each level serves a purpose in both gameplay and storytelling
-- Dual protagonist perspective switching between levels
-
-### Physics & Interaction
-
-#### Core Features
-- **Destructible structures and player/vehicle parts**
-- **Vehicle interiors via static proxies and kinematic player**
-- **Boats/buoyancy/player swimming**
-- **Flying simulation**
-- **Driving simulation**
-- **Player falling, ground orientation/projected movement**
-- **Advanced shaders/appearance**
-- **Distance-based audio**
-- **Spherical planets (detail method)**
-- **Grounding and falling quaternion movement**
-- **Interior system**
-- **Floating origin**
-- **Animation and IK ragdoll gltf**
-
-#### Destructible Environments
-- Strategic, not cosmetic destruction
-- Players can target specific elements to create paths or expose enemies
-- Realistic damage modeling for structures and vehicles
-
-#### Advanced Locomotion
-- Seamless blend of player animations with dynamic physics (ragdoll)
-- Realistic movement and reaction to impacts
-- Ground orientation and projected movement along surface normals
-
-#### Water Physics
-- Realistic buoyancy system for boats
-- Responsive swimming controls for underwater navigation
-- Dynamic water interaction with destructible elements
-
-
-### Visual Design
-- "Semi-realistic" aesthetic with gritty, weathered textures
-- Dramatic lighting to create desolate, post-apocalyptic atmosphere
-- Advanced shader work for realistic materials (metal, concrete, fabric)
-- Weather effects integration (rain, dust storms, fog)
-
 ## Story Synopsis
 
 The world of 2084 is devastated by a global conflict known as the Decimation. The campaign begins with Cpl. Kaelen Vex, a prisoner of the RNC, escaping a sinking penitentiary. After rejoining his faction, the FAS, he is forced to participate in the brutal suppression of a civilian food riot, planting seeds of disillusionment.
@@ -69,28 +22,48 @@ Their paths converge in the final level as they unite to take down The Executive
 ## Level Structure
 
 ### Level 1: "The Sinking Penitent" (Vex)
-- **Core Features:** Swimming, boats/buoyancy, destructible structures
-- **Narrative Purpose:** Character introduction, world establishment
+- **Core Features:** Swimming, boats/buoyancy, destructible structures, environmental audio
+- **Narrative Purpose:** Character introduction, world establishment through overheard radio broadcasts, news reports, and guard behavior; faction ideology exposition
 
 ### Level 2: "The Harvest" (Vex)
-- **Core Features:** Advanced audio/visual effects, destructible cover
-- **Narrative Purpose:** Moral complexity introduction, Vex's disillusionment begins
+- **Core Features:** Advanced audio/visual effects, destructible cover, crowd audio and behavior
+- **Narrative Purpose:** Moral complexity introduction through civilian riot suppression; destructible cover reveals desperate civilians; Vex's disillusionment begins
 
 ### Level 3: "Harbor Gauntlet" (Sharma)
-- **Core Features:** Vehicle interiors, driving simulation, destructible parts
-- **Narrative Purpose:** Sharma introduction, tactical contrast to Vex's missions
+- **Core Features:** Vehicle interiors, driving simulation, destructible vehicle parts, seamless transitions
+- **Narrative Purpose:** Sharma introduction; experience war from vehicle interior perspective with destructible parts affecting functionality; tactical contrast to Vex's missions
 
 ### Level 4: "The Airship Graveyard" (Vex)
-- **Core Features:** Flying simulation, destructible vehicle parts
-- **Narrative Purpose:** Escalation, Vex's growing skepticism
+- **Core Features:** Flying simulation, destructible vehicle parts, dynamic physics
+- **Narrative Purpose:** Escalation through aerial combat; damaged aircraft parts affect flight control; Vex's growing skepticism
 
 ### Level 5: "The Foundry" (Sharma)
-- **Core Features:** Ground orientation, ragdoll systems
-- **Narrative Purpose:** Technology revelation, Sharma's turning point
+- **Core Features:** Advanced locomotion, ragdoll systems, environmental physics
+- **Narrative Purpose:** Technology revelation through industrial hazards; ragdoll physics during accidents; Sharma's turning point
 
 ### Level 6: "The Bunker" (Both)
-- **Core Features:** All systems integration, final boss mechanics
-- **Narrative Purpose:** Character convergence, climactic resolution
+- **Core Features:** All systems integration, swimming, vehicles, destruction, final confrontation mechanics
+- **Narrative Purpose:** Character convergence; all gameplay systems unite in climactic multi-phase encounter; resolution of conspiracy
+
+## Core Gameplay Features
+
+### Narrative Progression
+- Linear, 6-level campaign with emotional and thematic arc
+- Each level serves a purpose in both gameplay and storytelling
+- Dual protagonist perspective switching between levels
+
+### Core Mechanics
+- **Destructible structures and player/vehicle parts**
+- **Swimming and water physics**
+- **Vehicle interiors and driving**
+- **Flying simulation**
+- **Distance-based audio**
+
+### Visual Design
+- "Semi-realistic" aesthetic with gritty, weathered textures
+- Dramatic lighting to create desolate, post-apocalyptic atmosphere
+- Advanced shader work for realistic materials (metal, concrete, fabric)
+- Weather effects integration (rain, dust storms, fog)
 
 ## Technical Requirements
 
@@ -113,6 +86,17 @@ Their paths converge in the final level as they unite to take down The Executive
    - High-quality positional audio for situational awareness
    - Distinct sound profiles for weapons, environments, and physics effects
    - Realistic audio propagation in different environments
+
+5. **Advanced Physics Systems**
+   - Vehicle interiors via static proxies and kinematic player
+   - Boats/buoyancy/player swimming
+   - Player falling, ground orientation/projected movement
+   - Spherical planets (detail method)
+   - Grounding and falling quaternion movement
+   - Interior system
+   - Floating origin
+   - Animation and IK ragdoll gltf
+   - Advanced shaders/appearance
 
 ## Technical Constraints
 - Target 60 FPS on modern PC hardware
