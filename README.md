@@ -44,7 +44,7 @@ Inspired by Battlestar Galactica and Call of Duty 4, the game combines grounded 
 - **Driving simulation**
 - **Player falling, ground orientation/projected movement**
 - **Advanced shaders/appearance**
-- **High-quality positional audio**
+- **Distance-based audio**
 - **Spherical planets (detail method)**
 - **Grounding and falling quaternion movement**
 - **Interior system**
@@ -66,11 +66,6 @@ Inspired by Battlestar Galactica and Call of Duty 4, the game combines grounded 
 - Responsive swimming controls for underwater navigation
 - Dynamic water interaction with destructible elements
 
-
-### Audio Design
-- High-quality positional audio critical for situational awareness
-- Distinct sound profiles for weapons, environments, and physics effects
-- Realistic audio propagation in different environments
 
 ### Visual Design
 - "Semi-realistic" aesthetic with gritty, weathered textures
@@ -129,20 +124,16 @@ Their paths converge in the final level as they unite to take down The Executive
    - Ragdoll physics integration
    - Smooth blending between animation states
 
-## Production Considerations
+4. **Audio System**
+   - High-quality positional audio for situational awareness
+   - Distinct sound profiles for weapons, environments, and physics effects
+   - Realistic audio propagation in different environments
 
-### Team Size
-- Recommended for small-to-mid size development team (15-30 people)
-- Core disciplines: Programming, Art, Design, Audio, QA
-
-### Development Timeline
-- Long time
-
-### Technical Constraints
+## Technical Constraints
 - Target 60 FPS on modern PC hardware
 - Scalable graphics settings for various hardware configurations
 
-### Asset Pipeline
+## Asset Pipeline
 - Standardized dimensions for promotional materials
 - Modular asset creation for efficient development
 - Version control system for collaborative development
