@@ -9,6 +9,60 @@ A single-player FPS set in a post-apocalyptic world devastated by "The Decimatio
 
 Inspired by Battlestar Galactica and Call of Duty 4, the game combines grounded military realism with selective sci-fi elements, emphasizing environmental storytelling and the human cost of manipulation and conflict.
 
+## Locations
+
+### Planetary System Structure
+The game takes place across multiple planets and moons in a colonized star system, with conflicts spanning different gravity wells and orbital positions.
+
+### Primary Locations
+
+#### Terra Nova (Habitable Planet - FAS Territory)
+- **Type:** Earth-like terrestrial planet
+- **Gravity:** 1.0g
+- **Distance from System Primary:** 1.2 AU
+- **Key Locations:**
+  - Level 2: "The Harvest" - Northern agricultural settlements
+  - FAS military command infrastructure
+
+#### Kepler's Rest (Ice Moon - Contested Territory)
+- **Type:** Frozen moon orbiting gas giant Goliath
+- **Gravity:** 0.3g
+- **Distance from Goliath:** 420,000 km
+- **Distance from System Primary:** 5.4 AU
+- **Key Locations:**
+  - Level 1: "The Sinking Penitent" - Flooded penitentiary complex on thawing ice shelf
+  - Underground water reservoirs
+
+#### New Vancouver (Industrial Colony - RNC Territory)
+- **Type:** Rocky moon with thin atmosphere
+- **Gravity:** 0.7g
+- **Distance from System Primary:** 2.8 AU
+- **Key Locations:**
+  - Level 3: "Harbor Gauntlet" - Coastal industrial harbor
+  - RNC naval staging grounds
+
+#### Cirrus Station (Orbital Platform - Neutral Space)
+- **Type:** Derelict orbital shipyard
+- **Gravity:** Variable (rotating sections 0.8g, outer sections microgravity)
+- **Orbital Position:** Lagrange point between Terra Nova and gas giant Goliath
+- **Key Locations:**
+  - Level 4: "The Airship Graveyard" - Abandoned spacecraft maintenance bays
+  - Zero-g combat zones
+
+#### Forge Prime (Asteroid Colony - Executive's Hidden Base)
+- **Type:** Hollowed asteroid with artificial gravity
+- **Gravity:** 0.5g (artificial)
+- **Distance from System Primary:** 3.2 AU (asteroid belt)
+- **Key Locations:**
+  - Level 5: "The Foundry" - Industrial manufacturing complex
+  - Executive's command bunker
+  - Level 6: "The Bunker" - Deep underground facility
+
+### Travel Distances
+- Terra Nova ↔ Kepler's Rest: ~630 million km (burn time: 3-5 days via military transport)
+- New Vancouver ↔ Cirrus Station: ~240 million km (burn time: 1-2 days)
+- Cirrus Station ↔ Forge Prime: ~280 million km (burn time: 2-3 days)
+
 ## Level Structure
 
 ### Level 1: "The Sinking Penitent" (Vex) — Equilibrium
