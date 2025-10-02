@@ -96,8 +96,10 @@ Inspired by Battlestar Galactica and Call of Duty 4, the game combines grounded 
 - **3D Modeling/Animation:** Blender
 
 ### Standards
-- **Model Export:** GLTF 2.0 format with embedded textures
+- **Model Export:** GLTF 2.0 with separate .bin buffer files
+- **Texture Format:** PNG source files; engine converts to compressed formats (BC7/ASTC)
 - **Texture Resolution:** 2K base (2048x2048), 4K for hero assets, 1K for background objects
+- **PBR Textures:** Base Color (sRGB), Normal (Linear), Metallic/Roughness (Linear, packed), Ambient Occlusion (Linear)
 - **Naming Convention:** `[category]_[name]_[variant]_[LOD].gltf` (e.g., `veh_helicopter_military_lod0.gltf`)
 - **Poly Budget:** Characters 15-25k tris, Vehicles 20-40k tris, Props 500-5k tris (LOD0)
 - **Scene Organization:** Modular prefabs using Godot's scene instancing system
