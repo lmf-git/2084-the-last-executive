@@ -1,23 +1,13 @@
 # 2084: The Last Executive
 
-**Version:** 1.0
+**Version:** 0.0
 **Genre:** First-Person Shooter (FPS)
 **Platform:** PC (Steam, Itch.io), Console (Xbox, PlayStation)
 **Target Audience:** Fans of gritty, narrative-driven FPS games like "Call of Duty 4: Modern Warfare" and the world-building of "Battlestar Galactica"
 
-**2084: The Last Executive** is a single-player FPS that begins with Corporal Kaelen Vex escaping from a collapsing, flooded prison complex. Set in a post-apocalyptic world devastated by "The Decimation" (2081-2084), the game explores a brutal proxy war between two factions: the authoritarian Federation of American States (FAS) and the democratic Republic of the Northern Crescent (RNC).
-
-Players alternate between two protagonists - Vex (FAS) and Sergeant Anya Sharma (RNC) - as they gradually discover their conflict is orchestrated by "The Executive," a shadow figure manipulating both sides. The campaign spans six levels showcasing swimming mechanics, vehicle combat, and moral choice, culminating in former enemies uniting to expose the conspiracy and end the senseless war.
+A single-player FPS set in a post-apocalyptic world devastated by "The Decimation" (2081-2084). Players alternate between Corporal Kaelen Vex (FAS) and Sergeant Anya Sharma (RNC), two soldiers on opposing sides of a brutal proxy war. As they fight, both discover their conflict is orchestrated by "The Executive," a shadow figure manipulating both factions. The campaign spans six levels, culminating in former enemies uniting to expose the conspiracy and end the senseless war.
 
 Inspired by Battlestar Galactica and Call of Duty 4, the game combines grounded military realism with selective sci-fi elements, emphasizing environmental storytelling and the human cost of manipulation and conflict.
-
-## Story Synopsis
-
-The world of 2084 is devastated by a global conflict known as the Decimation. The campaign begins with Cpl. Kaelen Vex, a prisoner of the RNC, escaping a sinking penitentiary. After rejoining his faction, the FAS, he is forced to participate in the brutal suppression of a civilian food riot, planting seeds of disillusionment.
-
-Simultaneously, players experience the conflict through Sgt. Anya Sharma of the RNC, a soldier fighting what she believes is a righteous war for her people. Both protagonists gradually discover the war is a proxy conflict masterminded by "The Executive," a former US president turned warlord.
-
-Their paths converge in the final level as they unite to take down The Executive and end the senseless bloodshed, realizing they have more in common with each other than with the leaders they've been fighting for.
 
 ## Level Structure
 
