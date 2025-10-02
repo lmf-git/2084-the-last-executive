@@ -1,30 +1,15 @@
 # 2084: The Last Executive
-## Game Project Plan
 
-**Version:** 1.0  
-**Genre:** First-Person Shooter (FPS)  
-**Platform:** PC (Steam, Itch.io), Console (Xbox, PlayStation)  
-**Target Audience:** Fans of gritty, narrative-driven FPS games
-
-## Synopsis
+**Version:** 1.0
+**Genre:** First-Person Shooter (FPS)
+**Platform:** PC (Steam, Itch.io), Console (Xbox, PlayStation)
+**Target Audience:** Fans of gritty, narrative-driven FPS games like "Call of Duty 4: Modern Warfare" and the world-building of "Battlestar Galactica"
 
 **2084: The Last Executive** is a single-player FPS that begins with Corporal Kaelen Vex escaping from a collapsing, flooded prison complex. Set in a post-apocalyptic world devastated by "The Decimation" (2081-2084), the game explores a brutal proxy war between two factions: the authoritarian Federation of American States (FAS) and the democratic Republic of the Northern Crescent (RNC).
 
-Players alternate between two protagonists - Vex (FAS) and Sergeant Anya Sharma (RNC) - as they gradually discover their conflict is orchestrated by "The Executive," a shadow figure manipulating both sides. The campaign spans six levels showcasing swimming mechanics, vehicle combat, gravity manipulation, and moral choice, culminating in former enemies uniting to expose the conspiracy and end the senseless war.
+Players alternate between two protagonists - Vex (FAS) and Sergeant Anya Sharma (RNC) - as they gradually discover their conflict is orchestrated by "The Executive," a shadow figure manipulating both sides. The campaign spans six levels showcasing swimming mechanics, vehicle combat, and moral choice, culminating in former enemies uniting to expose the conspiracy and end the senseless war.
 
 Inspired by Battlestar Galactica and Call of Duty 4, the game combines grounded military realism with selective sci-fi elements, emphasizing environmental storytelling and the human cost of manipulation and conflict.
-
-## Game Design Document
-
-### Overview
-
-- **Title:** 2084: The Last Executive
-- **Genre:** First-Person Shooter (FPS)
-- **Platform:** PC (Steam, Itch.io)
-- **Target Audience:** Fans of gritty, narrative-driven FPS games like "Call of Duty 4: Modern Warfare" and the world-building of "Battlestar Galactica"
-- **Unique Selling Point:** A campaign that blends grounded military combat with jarring sci-fi elements (point gravity), and a dual-perspective narrative that explores the moral ambiguity of a brutal proxy war
-
-"2084: The Last Executive" is a single-player, narrative-driven FPS set in a post-apocalyptic world torn apart by a brutal proxy war. Players experience the conflict through the eyes of two protagonists from opposing factions, ultimately discovering they are pawns in a larger conspiracy.
 
 
 ## Core Gameplay Features
