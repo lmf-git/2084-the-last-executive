@@ -26,47 +26,8 @@ Inspired by Battlestar Galactica and Call of Duty 4, the game combines grounded 
 
 "2084: The Last Executive" is a single-player, narrative-driven FPS set in a post-apocalyptic world torn apart by a brutal proxy war. Players experience the conflict through the eyes of two protagonists from opposing factions, ultimately discovering they are pawns in a larger conspiracy.
 
-### Project Structure
-
-```
-2084-the-last-executive/
-├── README.md
-├── docs/
-│   ├── Game_Design_Document.md
-│   ├── entities/
-│   │   ├── characters/
-│   │   ├── factions/
-│   │   └── locations/
-│   ├── lore/
-│   │   └── World_Lore.md
-│   ├── concept_art/
-│   │   ├── characters/
-│   │   ├── environments/
-│   │   ├── vehicles/
-│   │   ├── weapons/
-│   │   ├── ui/
-│   │   └── marketing/
-│   ├── storyboards/
-│   │   ├── characters/
-│   │   ├── environments/
-│   │   ├── vehicles/
-│   │   └── ui/
-│   └── media_assets/
-│       └── marketing/
-└── levels/
-    ├── Level_01_Sinking_Penitent.md
-    ├── Level_02_The_Harvest.md
-    ├── Level_03_Harbor_Gauntlet.md
-    ├── Level_04_The_Airship_Graveyard.md
-    ├── Level_05_The_Foundry.md
-    └── Level_06_The_Bunker.md
-```
 
 ## Core Gameplay Features
-
-### Player Input
-- Standard FPS controls (WASD, Mouse look, Sprint, Crouch, Jump, etc.)
-- Context-sensitive interactions for vehicles and special mechanics
 
 ### Narrative Progression
 - Linear, 6-level campaign with emotional and thematic arc
@@ -84,8 +45,12 @@ Inspired by Battlestar Galactica and Call of Duty 4, the game combines grounded 
 - **Driving simulation**
 - **Player falling, ground orientation/projected movement**
 - **Advanced shaders/appearance**
-- **Player IK/ragdoll/animation blending**
 - **High-quality positional audio**
+- **Spherical planets (detail method)**
+- **Grounding and falling quaternion movement**
+- **Interior system**
+- **Floating origin**
+- **Animation and IK ragdoll gltf**
 
 #### Destructible Environments
 - Strategic, not cosmetic destruction
@@ -184,20 +149,13 @@ Their paths converge in the final level as they unite to take down The Executive
 - Core disciplines: Programming, Art, Design, Audio, QA
 
 ### Development Timeline
-- Estimated 18-24 months for full production
-- 6-month pre-production for technical prototyping
-- Phased milestone delivery based on level completion
+- Long time
 
 ### Technical Constraints
 - Target 60 FPS on modern PC hardware
 - Scalable graphics settings for various hardware configurations
-- Memory optimization for seamless level transitions
 
 ### Asset Pipeline
 - Standardized dimensions for promotional materials
 - Modular asset creation for efficient development
 - Version control system for collaborative development
-
----
-
-*This project plan is designed for a small-to-mid size game development team and follows industry best practices for FPS game development. All assets and scripts are designed to showcase the core gameplay features while maintaining narrative coherence.*

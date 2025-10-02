@@ -45,9 +45,13 @@ func _input(event: InputEvent) -> void:
 
 func _handle_mouse_look(event: InputEventMouseMotion) -> void:
 	"""Handle mouse look for camera rotation"""
+	# Update FPS hands with mouse movement for natural aiming feel
+	if fps_hands and is_first_person:
+		fps_hands.update_aim_movement(event.relative.x)
+
 	# Rotate the CharacterBody3D horizontally (Y-axis) - this turns the entire capsule
 	rotate_y(-event.relative.x * mouse_sensitivity)
-	
+
 	# Rotate only the active camera vertically (X-axis)
 	var active_camera := first_person_camera if is_first_person else third_person_camera
 	active_camera.rotate_x(-event.relative.y * mouse_sensitivity)

@@ -398,10 +398,12 @@ func position_ik_targets_initially():
 		return
 	
 	# Try to find hand and foot bones and position targets there
-	var left_hand_bone = find_bone_index_by_patterns(["lefthand", "left_hand", "l_hand", "mixamorig:lefthand"])
-	var right_hand_bone = find_bone_index_by_patterns(["righthand", "right_hand", "r_hand", "mixamorig:righthand"])
-	var left_foot_bone = find_bone_index_by_patterns(["leftfoot", "left_foot", "l_foot", "mixamorig:leftfoot"])
-	var right_foot_bone = find_bone_index_by_patterns(["rightfoot", "right_foot", "r_foot", "mixamorig:rightfoot"])
+	var left_hand_bone = find_bone_index_by_patterns(["hand_l", "lefthand", "left_hand", "l_hand", "mixamorig:lefthand"])
+	var right_hand_bone = find_bone_index_by_patterns(["hand_r", "righthand", "right_hand", "r_hand", "mixamorig:righthand"])
+	var left_foot_bone = find_bone_index_by_patterns(["foot_l", "leftfoot", "left_foot", "l_foot", "mixamorig:leftfoot"])
+	var right_foot_bone = find_bone_index_by_patterns(["foot_r", "rightfoot", "right_foot", "r_foot", "mixamorig:rightfoot"])
+	
+	print("DEBUG: Found bone indices - left_hand:", left_hand_bone, " right_hand:", right_hand_bone, " left_foot:", left_foot_bone, " right_foot:", right_foot_bone)
 	
 	# Position targets at reasonable default positions relative to character
 	if left_hand_bone >= 0 and left_hand_target:
@@ -442,17 +444,20 @@ func create_skeleton_ragdoll():
 		
 	print("Creating skeleton ragdoll with ", skeleton_3d.get_bone_count(), " bones")
 	
-	# Important bones for ragdoll physics (common bone names)
-	var important_bones = [
-		"head", "spine", "chest", "pelvis", "hips",
-		"leftarm", "rightarm", "leftforearm", "rightforearm",
-		"lefthand", "righthand", "leftupleg", "rightupleg",
-		"leftleg", "rightleg", "leftfoot", "rightfoot",
-		# Mixamo rig names
-		"mixamorig:head", "mixamorig:spine", "mixamorig:spine1", "mixamorig:spine2",
-		"mixamorig:leftarm", "mixamorig:rightarm", "mixamorig:leftforearm", "mixamorig:rightforearm",
-		"mixamorig:lefthand", "mixamorig:righthand", "mixamorig:leftupleg", "mixamorig:rightupleg",
-		"mixamorig:leftleg", "mixamorig:rightleg", "mixamorig:leftfoot", "mixamorig:rightfoot"
+	# First, let's see what bones actually exist
+	print("=== ALL SKELETON BONE NAMES ===")
+	for i in range(skeleton_3d.get_bone_count()):  # Show ALL bones
+		print("Bone ", i, ": ", skeleton_3d.get_bone_name(i))
+	print("=== END BONE NAMES (", skeleton_3d.get_bone_count(), " total) ===")
+	
+	# Use specific bone name patterns matching the actual skeleton (case sensitive)
+	var important_bone_names = [
+		"pelvis", "spine_01", "spine_02", "spine_03", "neck_01", "Head",  # Core body (note: Head has capital H)
+		"clavicle_l", "clavicle_r",  # Shoulders
+		"upperarm_l", "upperarm_r", "lowerarm_l", "lowerarm_r",  # Arms
+		"hand_l", "hand_r",  # Hands
+		"thigh_l", "thigh_r", "calf_l", "calf_r",  # Legs
+		"foot_l", "foot_r"  # Feet
 	]
 	
 	# Create PhysicalBone3D nodes for important bones
@@ -462,8 +467,8 @@ func create_skeleton_ragdoll():
 		
 		# Check if this bone should have physics
 		var should_create_physical_bone = false
-		for important_bone in important_bones:
-			if important_bone in bone_name_lower:
+		for bone_pattern in important_bone_names:
+			if bone_name == bone_pattern:  # Exact case-sensitive match
 				should_create_physical_bone = true
 				break
 		
@@ -480,102 +485,145 @@ func create_physical_bone(bone_idx: int, bone_name: String):
 	var physical_bone = PhysicalBone3D.new()
 	physical_bone.name = "PhysicalBone_" + bone_name
 	physical_bone.bone_name = bone_name
-	
-	# Get bone transform to properly size the physics body
-	var bone_transform = skeleton_3d.get_bone_global_rest(bone_idx)
-	var bone_length = 0.2  # Default length
-	
-	# Try to calculate bone length by looking at children, but use conservative sizing
-	for i in range(skeleton_3d.get_bone_count()):
-		if skeleton_3d.get_bone_parent(i) == bone_idx:
-			var child_transform = skeleton_3d.get_bone_global_rest(i)
-			bone_length = min(0.3, bone_transform.origin.distance_to(child_transform.origin))  # Cap at 0.3 to prevent huge bones
-			break
-	
-	# Ensure minimum bone length to prevent tiny collision shapes
-	bone_length = max(0.05, bone_length)
-	
-	# Create appropriate collision shape based on bone
-	var shape = CapsuleShape3D.new()
+
+	# Create lowercase name for easier matching
 	var bone_name_lower = bone_name.to_lower()
+
+	# CRITICAL: Set the bone index for proper skeleton binding
+	physical_bone.bone_idx = bone_idx
+
+	# Get bone rest transform for proper positioning
+	var bone_rest = skeleton_3d.get_bone_rest(bone_idx)
+	var bone_length = 0.1  # Default smaller length
+
+	# Calculate bone length more conservatively to prevent stretching
+	var parent_idx = skeleton_3d.get_bone_parent(bone_idx)
+	if parent_idx >= 0:
+		var parent_rest = skeleton_3d.get_bone_rest(parent_idx)
+		bone_length = bone_rest.origin.length()
+
+	# Clamp bone length to reasonable values to prevent stretching
+	bone_length = clamp(bone_length, 0.05, 0.3)
+
+	print("Bone ", bone_name, " idx:", bone_idx, " length:", bone_length)
 	
+	# Create collision shapes based on ACTUAL bone length, not arbitrary sizes
+	var shape = CapsuleShape3D.new()
+	
+	# Use very conservative collision shapes to prevent stretching
 	if "head" in bone_name_lower:
 		shape = SphereShape3D.new()
-		shape.radius = max(0.08, bone_length * 0.4)
-	elif "spine" in bone_name_lower or "chest" in bone_name_lower:
-		shape.radius = max(0.06, bone_length * 0.3)
-		shape.height = max(0.15, bone_length * 0.8)
-	elif "arm" in bone_name_lower or "forearm" in bone_name_lower:
-		shape.radius = max(0.03, bone_length * 0.2)
-		shape.height = max(0.2, bone_length * 0.9)
-	elif "leg" in bone_name_lower or "upleg" in bone_name_lower:
-		shape.radius = max(0.04, bone_length * 0.25)
-		shape.height = max(0.25, bone_length * 0.9)
+		shape.radius = 0.08  # Fixed head size
+	elif "pelvis" in bone_name_lower:
+		# Pelvis as small capsule
+		shape.radius = 0.06
+		shape.height = 0.12
+	elif "spine" in bone_name_lower:
+		# Spine segments very small
+		shape.radius = 0.04
+		shape.height = 0.08
+	elif "neck" in bone_name_lower:
+		# Neck very small
+		shape.radius = 0.03
+		shape.height = 0.06
+	elif "upperarm" in bone_name_lower or "thigh" in bone_name_lower:
+		# Upper limbs moderate size
+		shape.radius = 0.04
+		shape.height = 0.15
+	elif "lowerarm" in bone_name_lower or "calf" in bone_name_lower:
+		# Lower limbs smaller
+		shape.radius = 0.03
+		shape.height = 0.12
+	elif "clavicle" in bone_name_lower:
+		# Shoulders small
+		shape.radius = 0.02
+		shape.height = 0.08
 	elif "hand" in bone_name_lower or "foot" in bone_name_lower:
-		shape.radius = max(0.025, bone_length * 0.3)
-		shape.height = max(0.08, bone_length * 0.6)
+		# Extremities very small
+		shape.radius = 0.02
+		shape.height = 0.05
 	else:
-		shape.radius = max(0.03, bone_length * 0.25)
-		shape.height = max(0.1, bone_length * 0.8)
+		# Default very small
+		shape.radius = 0.02
+		shape.height = 0.05
 	
 	var collision = CollisionShape3D.new()
 	collision.shape = shape
 	physical_bone.add_child(collision)
 	
-	# Set collision layers so ragdoll interacts with environment
-	physical_bone.collision_layer = 4  # ENEMIES layer (from project_config.gd)
-	physical_bone.collision_mask = 1   # Default layer (StaticBody3D ground uses layer 1)
+	# Set collision layers to prevent self-collision
+	physical_bone.collision_layer = 4           # ENEMIES layer
+	physical_bone.collision_mask = 1 + 2        # Collide ONLY with default (1) and environment (2), NOT with other ragdoll parts
+	
+	# Make collision more robust
+	physical_bone.can_sleep = false  # Keep physics active
 	
 	# Configure physics properties for natural ragdoll behavior
 	physical_bone.gravity_scale = 1.0
 	
-	# Set realistic mass distribution based on bone type
-	var bone_mass = 1.0
+	# Use much lighter masses to prevent stretching and chaos
+	var bone_mass = 0.5  # Much lighter default
 	if "head" in bone_name_lower:
-		bone_mass = 5.0  # Head is heavy
-	elif "spine" in bone_name_lower or "chest" in bone_name_lower:
-		bone_mass = 8.0  # Torso is heaviest
-	elif "upleg" in bone_name_lower:
-		bone_mass = 4.0  # Upper legs are heavy
-	elif "leg" in bone_name_lower:
-		bone_mass = 2.0  # Lower legs medium
-	elif "arm" in bone_name_lower:
-		bone_mass = 2.0  # Arms medium
-	elif "forearm" in bone_name_lower:
-		bone_mass = 1.0  # Forearms lighter
+		bone_mass = 2.0  # Head lighter
+	elif "pelvis" in bone_name_lower:
+		bone_mass = 5.0  # Pelvis much lighter
+	elif "spine" in bone_name_lower:
+		bone_mass = 2.0  # All spine segments light
+	elif "thigh" in bone_name_lower:
+		bone_mass = 3.0  # Thighs lighter
+	elif "calf" in bone_name_lower:
+		bone_mass = 1.5  # Calves light
+	elif "upperarm" in bone_name_lower:
+		bone_mass = 1.5  # Arms light
+	elif "lowerarm" in bone_name_lower:
+		bone_mass = 1.0  # Lower arms very light
+	elif "clavicle" in bone_name_lower:
+		bone_mass = 0.5  # Shoulders very light
+	elif "hand" in bone_name_lower or "foot" in bone_name_lower:
+		bone_mass = 0.5  # Extremities very light
 	else:
-		bone_mass = 1.0  # Default
+		bone_mass = 0.5  # Default very light
 	
 	physical_bone.mass = bone_mass
 	physical_bone.friction = 0.5  # Natural friction
 	physical_bone.bounce = 0.0   # No artificial bounce
 	
-	# NO damping - let pure physics work
-	physical_bone.linear_damp = 0.0
-	physical_bone.angular_damp = 0.0
+	# Add heavy damping to prevent wild oscillations and stretching
+	physical_bone.linear_damp = 0.5   # Heavy linear damping
+	physical_bone.angular_damp = 0.7   # Heavy angular damping for stability
 	
-	# Configure joint limits - use simpler, more natural constraints
-	if "head" in bone_name_lower:
-		# Head: cone joint with natural neck movement
+	# Configure joint types based on anatomy (simplified for Godot 4 compatibility)
+	if "lowerarm" in bone_name_lower:
+		# Elbow joints - hinge that only bends one way
+		physical_bone.joint_type = PhysicalBone3D.JOINT_TYPE_HINGE
+	elif "calf" in bone_name_lower:
+		# Knee joints - hinge that only bends one way
+		physical_bone.joint_type = PhysicalBone3D.JOINT_TYPE_HINGE
+	elif "neck" in bone_name_lower:
+		# Neck - limited cone joint
 		physical_bone.joint_type = PhysicalBone3D.JOINT_TYPE_CONE
-	elif "forearm" in bone_name_lower:
-		# Forearms: hinge joint for elbow
-		physical_bone.joint_type = PhysicalBone3D.JOINT_TYPE_HINGE
-	elif "leg" in bone_name_lower and not "upleg" in bone_name_lower:
-		# Lower legs: hinge joint for knee
-		physical_bone.joint_type = PhysicalBone3D.JOINT_TYPE_HINGE
+	elif "spine" in bone_name_lower:
+		# Spine - cone joint for flexibility
+		physical_bone.joint_type = PhysicalBone3D.JOINT_TYPE_CONE
+	elif "upperarm" in bone_name_lower or "clavicle" in bone_name_lower:
+		# Shoulders - ball and socket
+		physical_bone.joint_type = PhysicalBone3D.JOINT_TYPE_CONE
+	elif "thigh" in bone_name_lower:
+		# Hips - ball and socket
+		physical_bone.joint_type = PhysicalBone3D.JOINT_TYPE_CONE
+	elif "hand" in bone_name_lower or "foot" in bone_name_lower:
+		# Hands and feet - limited movement
+		physical_bone.joint_type = PhysicalBone3D.JOINT_TYPE_CONE
 	else:
-		# Default: cone joint with natural movement (arms, upper legs, spine, etc.)
+		# Default: cone joint
 		physical_bone.joint_type = PhysicalBone3D.JOINT_TYPE_CONE
-	
-	# Don't set overly restrictive limits - let Godot handle natural joint behavior
 	
 	# Start in kinematic mode (following animation)
 	# PhysicalBone3D starts in kinematic mode by default
 	
 	# Add to skeleton
 	skeleton_3d.add_child(physical_bone)
-	print("Created PhysicalBone3D for: ", bone_name)
+	print("Created PhysicalBone3D for: ", bone_name, " (type: ", physical_bone.joint_type, ", mass: ", physical_bone.mass, ")")
 
 func remove_all_physical_bones():
 	"""Remove all PhysicalBone3D nodes from skeleton"""
@@ -593,7 +641,11 @@ func remove_all_physical_bones():
 	
 	print("Removed all physical bones")
 
-# Removed reset_skeleton_to_natural_pose() - let pure physics handle everything
+func reset_skeleton_to_rest_pose():
+	"""DISABLED: Reset skeleton to rest pose to prevent initial physics conflicts"""
+	# This function was causing character squashing by zeroing all bone poses
+	# Ragdoll should work with the natural skeleton pose
+	print("Skeleton reset DISABLED to prevent character squashing")
 
 func activate_ragdoll():
 	"""Activate ragdoll physics using PhysicalBone3D system"""
@@ -603,6 +655,23 @@ func activate_ragdoll():
 	if not skeleton_3d:
 		print("No skeleton found for ragdoll")
 		return
+	
+	# Reset skeleton to rest pose to prevent weird initial forces
+	# DISABLED: This was squashing the character model by zeroing all bone poses  
+	# reset_skeleton_to_rest_pose()
+	# await get_tree().process_frame
+	
+	# Instead: ensure any existing animation is stopped and skeleton is free
+	if animation_player:
+		animation_player.stop()
+		animation_player.active = false  # Completely disable animation player
+		print("Stopped and deactivated animation player before ragdoll")
+	
+	# Ensure skeleton is not constrained by animation
+	if skeleton_3d:
+		# Clear any animation modifications that might interfere
+		skeleton_3d.reset_bone_poses()
+		print("Cleared skeleton bone poses to allow physics control")
 	
 	# Setup ragdoll physics on-demand
 	setup_ragdoll_physics()
