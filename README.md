@@ -88,11 +88,19 @@ Inspired by Battlestar Galactica and Call of Duty 4, the game combines grounded 
    - Animation and IK ragdoll gltf
    - Advanced shaders/appearance
 
-## Technical Constraints
-- Target 60 FPS on modern PC hardware
-- Scalable graphics settings for various hardware configurations
-
 ## Asset Pipeline
-- Standardized dimensions for promotional materials
-- Modular asset creation for efficient development
-- Version control system for collaborative development
+
+### Tools
+- **Engine:** Godot 4.x
+- **Version Control:** Git with LFS for binary assets
+- **3D Modeling/Animation:** Blender
+
+### Standards
+- **Model Export:** GLTF 2.0 format with embedded textures
+- **Texture Resolution:** 2K base (2048x2048), 4K for hero assets, 1K for background objects
+- **Naming Convention:** `[category]_[name]_[variant]_[LOD].gltf` (e.g., `veh_helicopter_military_lod0.gltf`)
+- **Poly Budget:** Characters 15-25k tris, Vehicles 20-40k tris, Props 500-5k tris (LOD0)
+- **Scene Organization:** Modular prefabs using Godot's scene instancing system
+- **Audio Format:** 44.1kHz Ogg Vorbis for SFX, music; positional audio via Godot's AudioStreamPlayer3D
+- **Promotional Materials:** 1920x1080 screenshots, 16:9 aspect ratio for marketing assets
+- **Git Structure:** Separate repos for game code and large binary assets; `.gitignore` configured for Godot import cache
